@@ -1,0 +1,85 @@
+<html>
+<title>Transport </title>
+<head>
+
+<style>
+    h1{
+    color: #996600;
+   font-size:30px ; 
+   width:40%;
+    border-bottom:red solid 3px ;
+    font-family: verdana;
+    font-size:1.7em;
+   }
+   body{
+       font-size: 14px;font-family: verdana;color:navy;font-weight: bold;
+   }
+   p{
+    width:500px;
+    margin:50px;
+    height:200px;
+    background-color: lightgray; 
+   }
+</style>
+<script>
+function affVoyage(){
+   var d=document.getElementById("destination").value;
+   var dep=document.getElementById("depart").value;
+   var _duree=document.getElementById("duree").value;
+   var _nbre=document.getElementById("nbre").value;
+   var hh=dep.substr(0,2);
+   var mm=dep.substr(3,2);
+   var time= (hh*60)+Number(mm);
+  //calcul des heures de depart
+  var ch2 = "";
+  for(let i=1; i<= _nbre; i++){
+    if(i!=1){
+    time = time + Number(_duree)}
+    h = Math.floor(time/60);
+    if(h>23)
+    h = h - 24 
+    m = time%60;
+    if(m==0)
+    m = "00";
+    var ch ='voyage N°' +i+' '+d+' '+h+':'+m+' '+'<br>';
+    var ch2 = ch2 + ch;
+      
+  }
+  //alert(ch2) 
+  document.getElementById('afficher').innerHTML = ch2;
+}
+</script>
+</head>
+<body>
+<script>
+  var dest=new Array("Mehdia","Tunis","Monastir","Kairouan","Hammamet","Bouargoub");
+</script>
+  <h1>Horaires du Bus</h1>
+<FORM NAME="f1">
+Destination &nb <select name="destination" id="destination">
+  <script>
+  //chargement de la liste déroulante des destinations
+  var d = document.f1.destination;
+  for(var i=0;i<dest.length;i++){
+    d.length++
+    d.options[d.length-1].text=dest[i];
+    d.options[d.length-1].value=dest[i];
+  }
+  
+  </script>
+</select><br>
+Heure du départ &nbsp;<input type="text" size="20" name="depart" id="depart"><br>
+durée &nbsp;<input type="text" name="duree" value="" id="duree">&nbsp; 
+<br>
+Nombre de voyages &nbsp;<input type="text" name="nbre" value="" id="nbre">&nbsp; 
+<br>
+<hr>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" name="baffiche" value="Afficher les horaires" onclick="affVoyage()">
+<input type="button" name="ff" value="index liste" onclick="alert(d.selectedIndex)"/>
+</form>
+<p id="afficher">
+
+</p>
+</body>
+</html>
